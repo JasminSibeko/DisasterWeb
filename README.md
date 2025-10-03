@@ -1,72 +1,87 @@
-Overview: 
-DisasterWeb is an ASP.NET MVC based disaster management and emergency response coordination platform, intended to serve an enterprise. It is a multi-dimensional solution that is supposed to streamline emergency operations, resource allocation and incident management in critical situations.
-Mission: 
-To deliver a powerful, scalable, and user-friendly platform capable of improving disaster response capacity by means of technology, improving response decision making and better utilization of resources in the case of emergencies.
-Features
-Core Functionality: 
- Real-time Dashboard - Active incidents and resources in real-time.
+# DisasterWeb - Disaster Management & Emergency Response Platform
 
- Incident Management - All-purpose disaster monitoring and control.
+**DisasterWeb** is an innovative disaster management and emergency response coordination platform, built with ASP.NET MVC. It streamlines disaster monitoring, resource allocation, and team management, enhancing the efficiency and speed of response during emergencies. The platform provides real-time analytics, geospatial mapping, and intelligent coordination for better disaster response and decision-making.
 
- Resource Management - Intelligent equipment and people utilization.
+---
 
- Responder Coordination - Team management and skill based assignment.
+## 🚀 **Mission**
 
- Analytics & Reporting - Fine-grained insights and performance measurement.
- Technical Features: 
- In-Memory Database - Rapid development and testing.
+Our goal is to create a scalable, secure, and user-friendly platform to improve the speed and effectiveness of emergency responses, optimize the use of available resources, and enhance decision-making during critical situations.
 
- Enterprise Security - Role-based access control.
+---
 
- Mobile Responsive - Mobile-friendly.
+## ⚙️ **Core Features**
 
- Live Chats - Push notifications and alerts.
+- **Real-Time Dashboard**  
+  Monitor ongoing incidents and resource status in real time, making critical decisions faster.
 
- Geospatial Integration - Incident visualization on the map.
- Technology Stack
- Backend: 
- Framework: ASP.NET MVC Core 6.0
+- **Incident Management**  
+  Centralized system to track and manage all disaster-related incidents, ensuring coordinated and efficient responses.
 
-Language: C# 10.0
+- **Resource Management**  
+  Manage personnel, equipment, and other resources, ensuring they are used optimally.
 
-ORM: Entity Framework Core 6.0
+- **Responder Coordination**  
+  Assign tasks based on skillsets and ensure smooth communication among emergency teams.
 
-Database: In-Memory Provider
+- **Analytics & Reporting**  
+  Generate detailed performance reports and insights for analysis after an incident to improve future responses.
 
-Authentication: Asp.Net core identity.
-Frontend: 
-UI Framework: Bootstrap 5.2
+---
 
-JavaScript: ES6+
+## 🛠️ **Technical Features**
 
-Charts: Chart.js
+- **In-Memory Database**  
+  Enables faster development, testing, and response times during disaster scenarios.
 
-Maps: Leaflet.js
+- **Enterprise-Level Security**  
+  Protect sensitive data using role-based access control (RBAC) to ensure that only authorized users can access specific features.
 
-Icons: Font Awesome 6.0
-Installation:
-.NET 6.0 SDK or later
+- **Mobile Responsiveness**  
+  Fully responsive design, ensuring users can access the platform anytime, anywhere, even on mobile devices.
 
-Visual Studio 2022 or VS Code
+- **Live Communication**  
+  Real-time messaging, alerts, and push notifications to facilitate communication between responders.
 
-Git for version control
+- **Geospatial Mapping**  
+  Visualize incidents and resources on maps, improving situational awareness and decision-making.
 
-How to start:
-# Clone the repository
+---
+
+## 🖥️ **Technology Stack**
+
+### Backend
+
+- **Framework**: ASP.NET Core 6.0
+- **Language**: C# 10.0
+- **ORM**: Entity Framework Core 6.0
+- **Database**: In-Memory Database Provider
+- **Authentication**: ASP.NET Core Identity for secure user authentication
+
+### Frontend
+
+- **UI Framework**: Bootstrap 5.2 for modern, responsive designs
+- **JavaScript**: ES6+ for dynamic, interactive web applications
+- **Charts**: Chart.js for data visualization
+- **Maps**: Leaflet.js for interactive maps and geospatial data
+- **Icons**: Font Awesome 6.0 for scalable, customizable icons
+
+---
+
+## 📋 **Installation & Setup**
+
+### Prerequisites
+
+Make sure you have the following installed on your system:
+
+- .NET 6.0 SDK or later
+- Visual Studio 2022 or Visual Studio Code
+- Git for version control
+
+### Steps to Run the Project Locally
+
+1. **Clone the Repository**
+
+```bash
 git clone https://github.com/JasminSibeko/DisasterWeb.git
 cd DisasterWeb
-
-# Restore dependencies
-dotnet restore
-
-# Build the solution
-dotnet build
-
-# Run the application
-dotnet run
-Visual Studio Development: 
-Open DisasterWeb.sln in Visual Studio 2022
-
-Set DisasterWeb.Web as startup project
-
-Press F5 to run
