@@ -61,3 +61,8 @@
    ```bash
    git clone https://github.com/JasminSibeko/DisasterWeb.git
    cd DisasterWeb
+
+
+If you like, I can generate a README already populated with details extracted from your code (controllers, endpoints, models, etc.). Would you like me to do that?
+::contentReference[oaicite:0]{index=0}
+
