@@ -63,6 +63,71 @@
    cd DisasterWeb
 
 
-If you like, I can generate a README already populated with details extracted from your code (controllers, endpoints, models, etc.). Would you like me to do that?
-::contentReference[oaicite:0]{index=0}
+Open the solution file DisasterWeb.sln in your IDE.
 
+Build the solution to restore and compile dependencies.
+
+Run the project (e.g. via Visual Studio or dotnet run in the project folder).
+
+Open your browser and navigate to https://localhost:5001 (or the configured port).
+
+🧩 Usage & Workflow
+
+Register / Log in — create user accounts and assign roles (e.g. admin, coordinator, responder).
+
+Create an incident — add a new disaster event with location, severity, and details.
+
+Allocate resources — assign equipment, personnel, vehicles, and supplies.
+
+Coordinate responders — assign tasks to field teams, communicate via messaging.
+
+Monitor progress — use dashboards and maps to track status in real time.
+
+Generate reports — analyze post-incident data and generate performance insights.
+
+🧪 Testing & Development
+
+The project uses an in-memory database for faster iteration and testing.
+
+To switch to a persistent store (e.g. SQL Server), update the DbContext configuration in Startup / Program.cs.
+
+Add unit/integration tests targeting controllers, services, and data access layers.
+
+✅ Contributing
+
+Contributions are welcome! Here’s how you can help:
+
+Fork the repository.
+
+Create a feature branch (git checkout -b feature/awesome-feature).
+
+Commit your changes (git commit -m "Add awesome feature").
+
+Push to your fork (git push origin feature/awesome-feature).
+
+Open a Pull Request against the main repository.
+
+Please follow the existing code style, write meaningful commit messages, and include tests where applicable.
+
+📝 License
+
+This project is licensed under the MIT License
+ (or whatever license you choose). Feel free to use, modify, and distribute.
+
+Acknowledgements & Resources
+
+The Leaflet.js library for maps
+
+Chart.js for data visualizations
+
+Bootstrap for responsive UI
+
+Community and open source inspiration
+
+Contact
+
+For queries, feedback, or help, you can reach out to:
+
+Author: Jasmin Sibeko
+
+Repository: https://github.com/JasminSibeko/DisasterWeb
