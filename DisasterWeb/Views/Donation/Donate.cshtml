@@ -1,0 +1,366 @@
+﻿@model ResourceDonation
+@{
+    ViewData["Title"] = "Make a Donation";
+}
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    :root {
+        --primary-pink: #F8BBD9;
+        --secondary-pink: #8B4B63;
+        --accent-pink: #C2185B;
+        --light-grey: #F5F5F5;
+        --medium-grey: #9E9E9E;
+        --dark-grey: #5D5D5D;
+        --light-pink: #FCE4EC;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, var(--light-pink) 0%, var(--primary-pink) 100%);
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    .donation-container {
+        padding: 2rem 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .feature-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-radius: 15px;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(139, 75, 99, 0.1);
+        margin-bottom: 2rem;
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 75, 99, 0.15);
+        }
+
+    .card-header.bg-success {
+        background: linear-gradient(135deg, var(--secondary-pink) 0%, var(--accent-pink) 100%) !important;
+        border-radius: 15px 15px 0 0 !important;
+        border: none;
+    }
+
+    .card-header.bg-info {
+        background: linear-gradient(135deg, var(--primary-pink) 0%, var(--medium-grey) 100%) !important;
+        border-radius: 15px 15px 0 0 !important;
+        border: none;
+    }
+
+    .form-control, .form-select {
+        border-radius: 10px;
+        padding: 12px 15px;
+        border: 2px solid #E0E0E0;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 0.2rem rgba(248, 187, 217, 0.25);
+        }
+
+    .input-group-text {
+        background-color: var(--light-pink);
+        border: 2px solid #E0E0E0;
+        border-right: none;
+        color: var(--secondary-pink);
+    }
+
+    .input-group .form-control {
+        border-left: none;
+    }
+
+    .btn-success {
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-weight: 600;
+        background: linear-gradient(135deg, var(--secondary-pink) 0%, var(--accent-pink) 100%);
+        border: none;
+        transition: all 0.3s ease;
+        color: white;
+    }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 75, 99, 0.4);
+            color: white;
+        }
+
+    .text-danger {
+        color: var(--accent-pink) !important;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .needs-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .needs-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(139, 75, 99, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+            .needs-list li:last-child {
+                border-bottom: none;
+            }
+
+    .fa-check {
+        color: var(--secondary-pink);
+        margin-right: 0.5rem;
+    }
+
+    .required-field::after {
+        content: " *";
+        color: var(--accent-pink);
+    }
+
+    /* Validation states */
+    .is-valid {
+        border-color: var(--secondary-pink) !important;
+    }
+
+    .is-invalid {
+        border-color: var(--accent-pink) !important;
+    }
+
+    /* Header styles matching the image */
+    .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--secondary-pink);
+    }
+
+        .page-header h1 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .page-header .lead {
+            font-size: 1.25rem;
+            color: var(--dark-grey);
+            font-weight: 500;
+        }
+</style>
+
+<div class="donation-container">
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Disaster Relief Aid</h1>
+            <p class="lead">The biggest disaster response initiative</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Main Donation Form -->
+                <div class="card feature-card">
+                    <div class="card-header bg-success text-white text-center py-4">
+                        <h3 class="mb-0"><i class="fas fa-gift me-2"></i>Make a Difference</h3>
+                        <p class="mb-0 mt-2">
+                            Your contribution can transform lives.
+                        </p>
+                    </div>
+                    <div class="card-body p-4">
+                        <form asp-action="Donate" method="post" id="donationForm">
+                            <!-- Donor Information -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="DonorName" class="form-label required-field">Full Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <input asp-for="DonorName" class="form-control" placeholder="Enter your full name" required>
+                                    </div>
+                                    <span asp-validation-for="DonorName" class="text-danger small"></span>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="DonorEmail" class="form-label required-field">Email Address</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        <input asp-for="DonorEmail" type="email" class="form-control" placeholder="Enter your email" required>
+                                    </div>
+                                    <span asp-validation-for="DonorEmail" class="text-danger small"></span>
+                                </div>
+                            </div>
+
+                            <!-- Donation Details -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="ItemType" class="form-label required-field">Donation Type</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-box"></i></span>
+                                        <select asp-for="ItemType" class="form-select" required>
+                                            <option value="">Select donation type</option>
+                                            <option value="Food">Food Supplies</option>
+                                            <option value="Clothing">Clothing</option>
+                                            <option value="Medical Supplies">Medical Supplies</option>
+                                            <option value="Shelter">Shelter Materials</option>
+                                            <option value="Hygiene">Hygiene Kits</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <span asp-validation-for="ItemType" class="text-danger small"></span>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="ItemName" class="form-label required-field">Item Description</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                                        <input asp-for="ItemName" class="form-control" placeholder="e.g., Canned goods, Blankets, etc." required>
+                                    </div>
+                                    <span asp-validation-for="ItemName" class="text-danger small"></span>
+                                </div>
+                            </div>
+
+                            <!-- Quantity and Incident -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Quantity" class="form-label required-field">Quantity</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                        <input asp-for="Quantity" type="number" class="form-control" placeholder="Number of items" min="1" required>
+                                    </div>
+                                    <span asp-validation-for="Quantity" class="text-danger small"></span>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="IncidentID" class="form-label">Target Relief Effort (Optional)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-crosshairs"></i></span>
+                                        <select asp-for="IncidentID" class="form-select">
+                                            <option value="">General Donation</option>
+                                            @if (ViewBag.ActiveIncidents != null)
+                                            {
+                                                foreach (var incident in ViewBag.ActiveIncidents)
+                                                {
+                                                    <option value="@incident.IncidentID">@incident.Title - @incident.Location</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional Information -->
+                            <div class="mb-3">
+                                <label asp-for="Description" class="form-label">Additional Details</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                    <textarea asp-for="Description" class="form-control" rows="3"
+                                              placeholder="Any additional information about your donation..."></textarea>
+                                </div>
+                                <span asp-validation-for="Description" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Drop-off Location -->
+                            <div class="mb-4">
+                                <label asp-for="PreferredDropoffLocation" class="form-label">Preferred Drop-off Location</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                    <input asp-for="PreferredDropoffLocation" class="form-control"
+                                           placeholder="e.g., Durban Central Warehouse">
+                                </div>
+                                <span asp-validation-for="PreferredDropoffLocation" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Submit Donation
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Current Needs Section -->
+                <div class="card feature-card">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="fas fa-list me-2"></i>Current Most Needed Items</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="needs-list">
+                                    <li><i class="fas fa-check"></i>Non-perishable food items</li>
+                                    <li><i class="fas fa-check"></i>Bottled water</li>
+                                    <li><i class="fas fa-check"></i>Blankets and warm clothing</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="needs-list">
+                                    <li><i class="fas fa-check"></i>First aid kits</li>
+                                    <li><i class="fas fa-check"></i>Hygiene products</li>
+                                    <li><i class="fas fa-check"></i>Baby supplies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="text-center mt-4">
+                    <p class="text-muted">© 2024 Disaster Relief Aid. All rights reserved</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('donationForm');
+
+            form.addEventListener('submit', function(e) {
+                const submitBtn = this.querySelector('button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+                    submitBtn.disabled = true;
+                }
+            });
+
+            // Real-time validation feedback
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.value.trim() !== '') {
+                        this.classList.add('is-valid');
+                        this.classList.remove('is-invalid');
+                    } else if (this.hasAttribute('required')) {
+                        this.classList.add('is-invalid');
+                        this.classList.remove('is-valid');
+                    }
+                });
+
+                // Clear validation on input
+                input.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        this.classList.remove('is-invalid');
+                    }
+                });
+            });
+        });
+    </script>
+}
